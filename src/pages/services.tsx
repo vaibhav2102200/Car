@@ -125,7 +125,7 @@ const Services = () => {
   {/* Background video */}
   <div className="absolute inset-0 flex items-center justify-center">
     <video
-      className="rounded-lg  md:w-full md:h-full object-cover object-center"
+      className="w-full h-full object-cover"
       autoPlay
       muted
       loop
