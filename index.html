@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Mobility Services</title>
+   
+    <meta name="description" content="Leading provider of global mobility services, immigration solutions, and business services. Your trusted partner for international expansion." />
+    <meta name="author" content="GMS" />
+    <link rel="icon" type="image/svg+xml" href="/lg.png" />
+    <meta property="og:title" content="GSM" />
+    <meta property="og:description" content="Leading provider of global mobility services, immigration solutions, and business services. Expert guidance for your international journey." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://image.made-in-china.com" crossorigin>
+    
+    <!-- DNS prefetch for better performance -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://image.made-in-china.com">
+    
+    <!-- Preload critical font with high priority -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Preload critical JavaScript - removed hardcoded paths for development -->
+    
+    <!-- Critical CSS inline fallback -->
+    <style>
+      /* Critical CSS for initial render */
+      * { box-sizing: border-box; }
+      body { 
+        font-family: Inter, system-ui, -apple-system, sans-serif; 
+        margin: 0; 
+        padding: 0; 
+        background: #000;
+        color: #fff;
+        line-height: 1.5;
+      }
+      #root { 
+        min-height: 100vh; 
+        display: flex; 
+        flex-direction: column;
+      }
+      /* Navigation critical styles */
+      nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+      /* Hero section critical styles */
+      .hero-section { min-height: 100vh; position: relative; }
+      /* Prevent FOUC */
+      .loading { 
+        opacity: 0; 
+        transition: opacity 0.3s ease-in-out; 
+      }
+      .loaded { 
+        opacity: 1; 
+      }
+      /* Critical button styles */
+      .btn { display: inline-flex; align-items: center; justify-content: center; }
+      /* Critical card styles */
+      .card { background: rgba(0,0,0,0.8); border-radius: 0.75rem; }
+    </style>
+  </head>
+
+  <body class="loading">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx" defer></script>
+  </body>
+</html>

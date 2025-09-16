@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+body {
+  @apply font-sans;
+}
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 64%;
+
+    --accent: 45 100% 70%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 12%;
+    --ring: 0 0% 98%;
+
+    --luxury-gold: 45 100% 70%;
+    --luxury-silver: 0 0% 85%;
+    --glass-border: 0 0% 25%;
+    --reflection-gradient: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+    --luxury-glow: 0 0 40px hsl(var(--accent) / 0.3);
+    
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 64%;
+
+    --accent: 45 100% 70%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 12%;
+    --ring: 0 0% 98%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Enhanced Up/Down Movement with Glow Effects */
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  25% {
+    transform: translateY(-30px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    transform: translateY(-60px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+  }
+  75% {
+    transform: translateY(-30px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  }
+  25% {
+    transform: translateY(-20px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  }
+  50% {
+    transform: translateY(-40px);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+  }
+  75% {
+    transform: translateY(-20px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  }
+}
+
+@keyframes geometricFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  }
+  25% {
+    transform: translateY(-25px) rotate(90deg);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    transform: translateY(-50px) rotate(180deg);
+    box-shadow: 0 0 28px rgba(0, 0, 0, 0.7);
+  }
+  75% {
+    transform: translateY(-25px) rotate(270deg);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes waveFloat {
+  0%, 100% {
+    transform: translateY(0px) scaleX(1);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  }
+  25% {
+    transform: translateY(-15px) scaleX(1.1);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    transform: translateY(-30px) scaleX(1.2);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+  }
+  75% {
+    transform: translateY(-15px) scaleX(1.1);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.animate-float-updown {
+  animation: floatUpDown 4s ease-in-out infinite;
+}
+
+.animate-particle-float {
+  animation: particleFloat 3s ease-in-out infinite;
+}
+
+.animate-geometric-float {
+  animation: geometricFloat 5s ease-in-out infinite;
+}
+
+.animate-wave-float {
+  animation: waveFloat 4.5s ease-in-out infinite;
+}
