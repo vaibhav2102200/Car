@@ -84,7 +84,14 @@ const Footer = () => {
           >
             <Instagram className="w-5 h-5" />
           </a>
-          
+          <a
+            href="https://twitter.com/gmscarmodifiers"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition-colors"
+          >
+            <Twitter className="w-5 h-5" />
+          </a>
           <a
             href="https://www.youtube.com/@GMSCarmodifiers"
             target="_blank"

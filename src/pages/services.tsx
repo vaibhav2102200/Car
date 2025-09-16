@@ -135,12 +135,18 @@ const Services = () => {
     />
   </div>
 
-  {/* Background image for mobile */}
+  {/* Background video for mobile */}
   <div className="absolute inset-0 flex items-center justify-center md:hidden">
-    <img
+    <video
       className="rounded-lg w-[500px] h-[235px] object-cover object-center"
-      src="/blog/bb.jpg"
-      alt="Car Modification Services"
+      autoPlay
+      muted
+      loop
+      playsInline
+      webkit-playsinline="true"
+      preload="metadata"
+      controls={false}
+      src="/v3.mp4"
     />
   </div>
 

@@ -32,19 +32,29 @@ const Contact = () => {
     let whatsappMessage = `Hello GMS Car Modifiers! 👋\n\n`;
     whatsappMessage += `I'm interested in your car modification services.\n\n`;
     
-    // Always include name fields, even if empty
+    // Include name fields
     const fullName = `${firstName || ''} ${lastName || ''}`.trim();
-    whatsappMessage += `*Name:* ${fullName || 'Not provided'}\n`;
+    if (fullName) {
+      whatsappMessage += `*Name:* ${fullName}\n`;
+    }
     
-    // Always include other fields
-    whatsappMessage += `*Email:* ${email || 'Not provided'}\n`;
-    whatsappMessage += `*Phone:* ${phone || 'Not provided'}\n`;
-    whatsappMessage += `*Car Model:* ${carModel || 'Not specified'}\n`;
-    whatsappMessage += `*Requirements:* ${message || 'No specific requirements mentioned'}\n`;
+    // Include other fields only if they have values
+    if (email) {
+      whatsappMessage += `*Email:* ${email}\n`;
+    }
+    if (phone) {
+      whatsappMessage += `*Phone:* ${phone}\n`;
+    }
+    if (carModel) {
+      whatsappMessage += `*Car Model:* ${carModel}\n`;
+    }
+    if (message) {
+      whatsappMessage += `*Requirements:* ${message}\n`;
+    }
     
     whatsappMessage += `\nPlease contact me for more details. Thank you!`;
     
-    console.log('Generated WhatsApp message:', whatsappMessage); // Debug log
+    console.log('Generated WhatsApp message:', whatsappMessage);
     return encodeURIComponent(whatsappMessage);
   };
 
@@ -69,6 +79,16 @@ const Contact = () => {
     
     // Send to first WhatsApp number by default
     sendToWhatsApp(whatsappNumbers[0]);
+    
+    // Clear form after successful submission
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      carModel: '',
+      message: ''
+    });
   };
 
   const locations = [
@@ -199,8 +219,9 @@ const Contact = () => {
                     Send WhatsApp Message
                   </Button>
                   
-                  {/* Debug button to test message generation */}
-                 
+                  <p className="text-sm text-gray-300 text-center">
+                    Click the button to open WhatsApp with your message pre-filled
+                  </p>
                 </div>
               </form>
             </div>
