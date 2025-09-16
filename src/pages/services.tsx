@@ -138,7 +138,7 @@ const Services = () => {
   {/* Background video for mobile */}
   <div className="absolute inset-0 flex items-center justify-center md:hidden">
     <video
-      className="rounded-lg w-[500px] h-[235px] object-cover object-center"
+      className="rounded-lg w-[500px] h-[700px] object-cover object-center"
       autoPlay
       muted
       loop
@@ -146,7 +146,7 @@ const Services = () => {
       webkit-playsinline="true"
       preload="metadata"
       controls={false}
-      src="/v3.mp4"
+      src="/v5.mp4"
     />
   </div>
 
