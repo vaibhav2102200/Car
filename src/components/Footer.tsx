@@ -22,7 +22,7 @@ const Footer = () => {
     {
       title: "Contact",
       items: [
-        { name: "Dooravani Nagar, Bengaluru", link: "#", isInternal: false },
+        { name: "434, Old Madras Rd, Corporation Colony, Bangalore Corporation Industrial Estate, Dooravani Nagar, Bengaluru, Karnataka 560016", link: "https://maps.app.goo.gl/NnymXCSJfixoP8Yq5", isInternal: false },
         { name: "+91 7619360036", link: "tel:+917619360036", isInternal: false },
         { name: "+91 7619360037", link: "tel:+917619360037", isInternal: false },
         { name: "gmscarmodifiers@gmail.com", link: "mailto:gmscarmodifiers@gmail.com", isInternal: false },
@@ -69,7 +69,7 @@ const Footer = () => {
         <h3 className="text-base md:text-lg font-semibold text-white mb-3 md:mb-4">Follow Us</h3>
         <div className="flex gap-3 md:gap-4">
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/share/1CGkSx2Si1/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-white transition-colors"
@@ -84,16 +84,9 @@ const Footer = () => {
           >
             <Instagram className="w-5 h-5" />
           </a>
+          
           <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <Twitter className="w-5 h-5" />
-          </a>
-          <a
-            href="https://youtube.com"
+            href="https://www.youtube.com/@GMSCarmodifiers"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-white transition-colors"

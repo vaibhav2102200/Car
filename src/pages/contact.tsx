@@ -101,14 +101,15 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Location",
-      details: ["434, Old Madras Rd, Corporation Colony, Bangalore Corporation Industrial Estate, Dooravani Nagar, Bengaluru, Karnataka 560016"]
+      details: ["434, Old Madras Rd, Corporation Colony, Bangalore Corporation Industrial Estate, Dooravani Nagar, Bengaluru, Karnataka 560016"],
+      mapsLink: "https://maps.app.goo.gl/NnymXCSJfixoP8Yq5"
     },
     {
       icon: Clock,
       title: "Business Hours",
       details: [
-        "Monday - Saturday: 9:00 AM - 7:00 PM",
-        "Sunday: By Appointment"
+        "Monday - Sunday: 10:00 AM - 8:00 PM",
+        
       ]
     }
   ];
@@ -220,15 +221,37 @@ const Contact = () => {
                         {info.isWhatsApp ? (
                           <button
                             onClick={() => sendToWhatsApp(detail.replace(/\s/g, ''))}
-                            className="text-green-400 hover:text-green-300 underline cursor-pointer transition-colors"
+                            className="text-green-400 hover:text-green-300 underline cursor-pointer transition-colors flex items-center gap-2"
                           >
-                            {detail} (Click to WhatsApp)
+                            {/* Fix: Import and use the correct WhatsApp icon */}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                              className="w-4 h-4"
+                            >
+                              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.298-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.571-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.099 3.205 5.077 4.372.71.306 1.263.489 1.695.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.617h-.001a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374A9.86 9.86 0 012.1 12.045C2.073 6.507 6.58 2 12.119 2c2.637 0 5.112 1.027 6.988 2.896A9.825 9.825 0 0122.24 12.08c-.003 5.539-4.511 10.045-10.189 10.045zm8.413-17.457A11.815 11.815 0 0012.119 0C5.452 0 .073 5.377.1 12.045c.019 2.13.561 4.21 1.608 6.045L.017 24l6.063-1.595a11.89 11.89 0 005.988 1.607h.005c6.666 0 12.045-5.377 12.073-12.043a11.86 11.86 0 00-3.477-8.44z"/>
+                            </svg>
+                            {detail} 
                           </button>
                         ) : (
                           detail
                         )}
                       </p>
                     ))}
+                    {info.mapsLink && (
+                      <div className="mt-3">
+                        <Button
+                          onClick={() => window.open(info.mapsLink, '_blank')}
+                          variant="outline"
+                          size="sm"
+                          className="bg-transparent border-accent text-accent hover:bg-accent hover:text-white transition-colors"
+                        >
+                          <MapPin className="w-4 h-4 mr-2" />
+                          View on Google Maps
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

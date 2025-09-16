@@ -24,7 +24,21 @@ const Gallery = () => {
   { src: "/wheel.png", alt: "Premium Alloy Wheels", category: "Alloy Wheels" },
   { src: "/a.png", alt: "Car Accessories Display", category: "Car Accessories" },
   { src: "/ppf.png", alt: "PPF & Ceramic Coating", category: "PPF & Ceramic Coating" },
-  { src: "/ss.png", alt: "Stereo System Upgrade", category: "Stereo Systems" }
+  { src: "/ss.png", alt: "Stereo System Upgrade", category: "Stereo Systems" },
+  // Blog images
+  { src: "/blog/1.jpg", alt: "Car Audio System Installation", category: "Car Audio Systems" },
+  { src: "/blog/2.jpg", alt: "Custom Car Interiors & Upholstery", category: "Custom Car Interiors & Upholstery" },
+  { src: "/blog/3.jpg", alt: "LED Lighting Upgrade", category: "Car Lighting & Styling" },
+  { src: "/blog/4.jpg", alt: "Car Wrap & Paint Protection", category: "Car Wraps & Paint Protection" },
+  { src: "/blog/5.jpg", alt: "Premium Alloy Wheels", category: "Alloy Wheels" },
+  { src: "/blog/6.jpg", alt: "Car Accessories Display", category: "Car Accessories" },
+  { src: "/blog/7.jpg", alt: "PPF & Ceramic Coating", category: "PPF & Ceramic Coating" },
+  { src: "/blog/8.jpg", alt: "Stereo System Upgrade", category: "Stereo Systems" },
+  { src: "/blog/9.jpg", alt: "Car Audio System Installation", category: "Car Audio Systems" },
+  { src: "/blog/10.jpg", alt: "Custom Car Interiors & Upholstery", category: "Custom Car Interiors & Upholstery" },
+  { src: "/blog/11.jpg", alt: "LED Lighting Upgrade", category: "Car Lighting & Styling" },
+  { src: "/blog/12.jpg", alt: "Car Wrap & Paint Protection", category: "Car Wraps & Paint Protection" },
+  { src: "/blog/13.jpg", alt: "Premium Alloy Wheels", category: "Alloy Wheels" }
 ];
 
 

@@ -119,26 +119,22 @@ const Services = () => {
       <Navigation />
 
       {/* Hero Section with Background Image */}
-     <section
+      <section
   className="relative mt-16 overflow-hidden min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-80px)] min-h-[60vh] flex items-center justify-center"
 >
   {/* Background video */}
   <div className="absolute inset-0 flex items-center justify-center">
-  <video
-    className="rounded-lg 
-               w-[500px] h-[235px]   /* default for mobile */
-               md:w-full md:h-full   /* full screen on tablet & above */
-               object-cover object-center"
-    autoPlay
-    muted
-    loop
-    playsInline
-    webkit-playsinline="true"
-    preload="metadata"
-    controls={false}
-    src="/v3.mp4"
-  />
-</div>
+    <video
+      ref={videoRef}
+      className="rounded-lg w-[500px] h-[235px] md:w-full md:h-full object-cover object-center"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      src="/v3.mp4"
+    />
+  </div>
 
   {/* Overlay */}
   <div className="absolute inset-0 bg-black/50" />
@@ -159,6 +155,7 @@ const Services = () => {
     </motion.p>
   </div>
 </section>
+
 
 
 
