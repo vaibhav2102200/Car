@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import {
@@ -19,9 +19,36 @@ import { motion } from 'framer-motion';
 import { WordReveal } from '@/components/ui/WordReveal';
 
 const Services = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
     document.body.classList.add('smooth-transition');
     return () => document.body.classList.remove('smooth-transition');
+  }, []);
+
+  useEffect(() => {
+    // iOS video handling
+    const video = videoRef.current;
+    if (video) {
+      const handleCanPlay = () => {
+        video.play().catch(e => {
+          console.log('Video autoplay failed:', e);
+          // Try again after a short delay
+          setTimeout(() => {
+            video.play().catch(err => console.log('Retry failed:', err));
+          }, 100);
+        });
+      };
+
+      video.addEventListener('canplay', handleCanPlay);
+      
+      // Force load on iOS
+      video.load();
+      
+      return () => {
+        video.removeEventListener('canplay', handleCanPlay);
+      };
+    }
   }, []);
   const services = [
   {
@@ -125,14 +152,16 @@ const Services = () => {
   {/* Background video */}
   <div className="absolute inset-0 flex items-center justify-center">
     <video
+      ref={videoRef}
       className="rounded-lg w-[500px] h-[235px] md:w-full md:h-full object-cover object-center"
       autoPlay
       muted
       loop
       playsInline
       webkit-playsinline="true"
-      preload="metadata"
+      preload="auto"
       controls={false}
+      style={{ WebkitPlaysinline: true }}
       src="/v3.mp4"
     />
   </div>
