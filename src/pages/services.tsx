@@ -131,7 +131,7 @@ const Services = () => {
       loop
       playsInline
       preload="metadata"
-      src="/bg.mp4"
+      src="/bg.mov"
     />
   </div>
 
