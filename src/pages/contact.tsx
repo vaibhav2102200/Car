@@ -336,11 +336,8 @@ const Contact = () => {
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-green-500/20 rounded-xl blur-xl -z-10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
-              
-              
                 </div>
           </motion.div>
-
           {/* Contact Information Section */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -371,9 +368,7 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1.6 + index * 0.2, duration: 0.6 }}
                   whileHover={{ scale: 1.02 }}
-                  className={`bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-gray-600/50 hover:border-green-500/50 transition-all duration-300 ${
-                    info.compact ? 'h-full' : ''
-                  } ${info.mapsLink ? 'md:col-span-3' : ''}`}
+                  className={`bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-gray-600/50 hover:border-green-500/50 transition-all duration-300 ${info.mapsLink ? 'md:col-span-3' : ''}`}
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="p-2 bg-green-500/20 rounded-lg">
@@ -411,7 +406,7 @@ const Contact = () => {
                             )}
                           </button>
                         ) : (
-                          <div className={`text-gray-300 p-2 rounded-lg bg-gray-800/30 ${info.compact ? 'text-sm' : ''}`}>
+                          <div className="text-gray-300 p-2 rounded-lg bg-gray-800/30">
                             {detail}
                           </div>
                         )}
