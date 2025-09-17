@@ -2,8 +2,35 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
 
 const Testimonials = () => {
+  const [videoError, setVideoError] = useState(false);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [videoLoading, setVideoLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const newIsMobile = window.innerWidth < 768;
+      if (newIsMobile !== isMobile) {
+        setIsMobile(newIsMobile);
+        setCurrentVideoIndex(0); // Reset to first video when switching
+        setVideoError(false); // Reset error state
+      }
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [isMobile]);
+  
+  const videoSources = isMobile 
+    ? ["/t1.mp4", "/vv3.mp4", "/v3.mp4", "/v1.mp4"] // Mobile-first with t1.mp4
+    : ["/vv3.mp4", "/v3.mp4", "/v1.mp4", "/v.mp4"]; // Desktop sources
+
   const testimonials = [
     {
       name: "John D.",
@@ -53,17 +80,50 @@ const Testimonials = () => {
     <div className="min-h-screen bg-background relative">
       <Navigation />
       {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          className="w-full h-full object-cover object-center"
-          autoPlay
-          muted
-          loop
-          playsInline
-          src="/vv3.mp4"
-         
-         
-        />
+      <div className="absolute inset-0 z-0 min-h-screen">
+        {videoLoading && !videoError && (
+          <div className="w-full h-full bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
+            <div className="text-center text-white">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+              <p className="text-lg">Loading video...</p>
+            </div>
+          </div>
+        )}
+        
+        {!videoError ? (
+          <video
+            className="rounded-lg w-[500px] h-[700px] object-cover object-center mx-auto"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            src={videoSources[currentVideoIndex]}
+            onError={(e) => {
+              if (currentVideoIndex < videoSources.length - 1) {
+                setCurrentVideoIndex(currentVideoIndex + 1);
+              } else {
+                setVideoError(true);
+              }
+            }}
+            onLoadStart={() => {
+              setVideoLoading(true);
+            }}
+            onCanPlay={() => {
+              setVideoLoading(false);
+            }}
+            onLoadedData={() => {
+              setVideoLoading(false);
+            }}
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
+            <div className="text-center text-white">
+              <p className="text-lg mb-2">Video unavailable</p>
+              <p className="text-sm text-gray-400">Background video could not be loaded</p>
+            </div>
+          </div>
+        )}
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>

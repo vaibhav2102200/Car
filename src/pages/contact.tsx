@@ -18,19 +18,28 @@ const Contact = () => {
 
   const whatsappNumbers = ['+917619360036', '+917619360037'];
 
-  // Function to send message to WhatsApp
-  const sendToWhatsApp = (phoneNumber: string) => {
-    const message = "Hello GMS Car Modifiers! I'm interested in your car modification services.";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
+  };
+
+
+  const sendToWhatsApp = (phoneNumber: string, message?: string) => {
+    const defaultMessage = `Hello GMS Car Modifiers! 👋\n\nI'm interested in your car modification services.\n\nPlease contact me for more details. Thank you!`;
+    const text = message || defaultMessage;
+    
+    // Clean phone number - remove spaces and ensure proper format
+    const cleanPhoneNumber = phoneNumber.replace(/\s/g, '');
+    const encodedText = encodeURIComponent(text);
+    
+    // Use the correct WhatsApp URL format
+    const whatsappUrl = `https://wa.me/${cleanPhoneNumber}?text=${encodedText}`;
+    
+    // Navigate to WhatsApp
+    window.location.href = whatsappUrl;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -41,44 +50,29 @@ const Contact = () => {
     // Create WhatsApp message with form data
     const { firstName, lastName, email, phone, carModel, message } = formData;
     
-    // Create a shorter, simpler message
-    let text = `Hello GMS Car Modifiers!\n\n`;
-    text += `I need car modification services.\n\n`;
+    let text = `Hello GMS Car Modifiers! 👋\n\n`;
+    text += `I'm interested in your car modification services.\n\n`;
     
     if (firstName || lastName) {
       text += `Name: ${firstName} ${lastName}\n`;
     }
-    if (phone) {
-      text += `Phone: ${phone}\n`;
-    }
     if (email) {
       text += `Email: ${email}\n`;
     }
+    if (phone) {
+      text += `Phone: ${phone}\n`;
+    }
     if (carModel) {
-      text += `Car: ${carModel}\n`;
+      text += `Car Model: ${carModel}\n`;
     }
     if (message) {
-      text += `Details: ${message}\n`;
+      text += `Requirements: ${message}\n`;
     }
     
-    text += `\nPlease contact me. Thanks!`;
+    text += `\nPlease contact me for more details. Thank you!`;
     
-    // Create WhatsApp URL with shorter message
-    const whatsappUrl = `https://wa.me/+917619360036?text=${encodeURIComponent(text)}`;
-    
-    console.log('WhatsApp URL:', whatsappUrl);
-    console.log('Message to send:', text);
-    
-    // Try alternative WhatsApp URL format
-    const alternativeUrl = `https://api.whatsapp.com/send?phone=+917619360036&text=${encodeURIComponent(text)}`;
-    
-    // Open WhatsApp with fallback
-    try {
-      window.open(whatsappUrl, '_blank');
-    } catch (error) {
-      console.log('Trying alternative URL:', alternativeUrl);
-      window.open(alternativeUrl, '_blank');
-    }
+    // Use the sendToWhatsApp function
+    sendToWhatsApp('917619360036', text);
     
     // Clear form after successful submission
     setTimeout(() => {
@@ -92,6 +86,16 @@ const Contact = () => {
       });
     }, 1000);
   };
+
+  const locations = [
+    "Bangalore",
+    "KR Puram",
+    "Whitefield",
+    "Mahadevapura",
+    "Bellandur",
+    "CV Raman Nagar",
+    "Marathahalli"
+  ];
 
   const contactInfo = [
     {
@@ -121,6 +125,7 @@ const Contact = () => {
       title: "Business Hours",
       details: [
         "Monday - Sunday: 10:00 AM - 8:00 PM",
+        
       ]
     }
   ];
@@ -138,6 +143,7 @@ const Contact = () => {
           loop
           playsInline
           src="/v44.mp4"
+         
           style={{
             minHeight: '100vh',
             minWidth: '100vw',
@@ -148,6 +154,19 @@ const Contact = () => {
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
       </div>
+      <div className="absolute inset-0 flex items-center justify-center md:hidden">
+    <video
+      className="rounded-lg w-[500px] h-[700px] object-cover object-center"
+      autoPlay
+      muted
+      loop
+      playsInline
+      webkit-playsinline="true"
+      preload="metadata"
+      controls={false}
+      src="/c1.mp4"
+    />
+  </div>
       
       <main className="pt-20 px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -208,13 +227,6 @@ const Contact = () => {
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Send WhatsApp Message
                   </Button>
-                  
-                
-                  
-                  
-                  <p className="text-sm text-gray-300 text-center">
-                    Click the button to open WhatsApp with your message pre-filled
-                  </p>
                 </div>
               </form>
             </div>
@@ -234,9 +246,10 @@ const Contact = () => {
                       <p key={idx} className="text-gray-200">
                         {info.isWhatsApp ? (
                           <button
-                            onClick={() => sendToWhatsApp(detail.replace(/\D/g, ''))}
+                            onClick={() => sendToWhatsApp(detail)}
                             className="text-green-400 hover:text-green-300 underline cursor-pointer transition-colors flex items-center gap-2"
                           >
+                            {/* Fix: Import and use the correct WhatsApp icon */}
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="currentColor"
@@ -268,6 +281,11 @@ const Contact = () => {
                   </div>
                 </div>
               ))}
+
+              {/* Map Placeholder
+              <div className="mt-8 rounded-lg overflow-hidden border border-border h-[300px] bg-card flex items-center justify-center">
+                <p className="text-muted-foreground">Google Maps Integration Here</p>
+              </div> */}
             </div>
           </div>
         </div>

@@ -36,6 +36,19 @@ const Hero = () => {
           }}
         />
       </div>
+      <div className="absolute inset-0 flex items-center justify-center md:hidden">
+    <video
+      className="rounded-lg w-[500px] h-[700px] object-cover object-center"
+      autoPlay
+      muted
+      loop
+      playsInline
+      webkit-playsinline="true"
+      preload="metadata"
+      controls={false}
+      src="/h1.mp4"
+    />
+  </div>
       
      
       {/* Content */}
