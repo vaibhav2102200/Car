@@ -18,6 +18,13 @@ const Contact = () => {
 
   const whatsappNumbers = ['+917619360036', '+917619360037'];
 
+  // Function to send message to WhatsApp
+  const sendToWhatsApp = (phoneNumber: string) => {
+    const message = "Hello GMS Car Modifiers! I'm interested in your car modification services.";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -26,80 +33,65 @@ const Contact = () => {
     }));
   };
 
-  const generateWhatsAppMessage = () => {
-    const { firstName, lastName, email, phone, carModel, message } = formData;
-    
-    let whatsappMessage = `Hello GMS Car Modifiers! 👋\n\n`;
-    whatsappMessage += `I'm interested in your car modification services.\n\n`;
-    
-    // Include name fields
-    const fullName = `${firstName || ''} ${lastName || ''}`.trim();
-    if (fullName) {
-      whatsappMessage += `*Name:* ${fullName}\n`;
-    }
-    
-    // Include other fields only if they have values
-    if (email) {
-      whatsappMessage += `*Email:* ${email}\n`;
-    }
-    if (phone) {
-      whatsappMessage += `*Phone:* ${phone}\n`;
-    }
-    if (carModel) {
-      whatsappMessage += `*Car Model:* ${carModel}\n`;
-    }
-    if (message) {
-      whatsappMessage += `*Requirements:* ${message}\n`;
-    }
-    
-    whatsappMessage += `\nPlease contact me for more details. Thank you!`;
-    
-    console.log('Generated WhatsApp message:', whatsappMessage);
-    return encodeURIComponent(whatsappMessage);
-  };
-
-  const sendToWhatsApp = (phoneNumber: string) => {
-    console.log('Form data before sending:', formData); // Debug log
-    const message = generateWhatsAppMessage();
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-    console.log('WhatsApp URL:', whatsappUrl); // Debug log
-    window.open(whatsappUrl, '_blank');
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate that at least some form data is provided
-    const hasData = Object.values(formData).some(value => value.trim() !== '');
+    console.log('Form submitted with data:', formData);
     
-    if (!hasData) {
-      alert('Please fill in at least one field before sending the message.');
-      return;
+    // Create WhatsApp message with form data
+    const { firstName, lastName, email, phone, carModel, message } = formData;
+    
+    // Create a shorter, simpler message
+    let text = `Hello GMS Car Modifiers!\n\n`;
+    text += `I need car modification services.\n\n`;
+    
+    if (firstName || lastName) {
+      text += `Name: ${firstName} ${lastName}\n`;
+    }
+    if (phone) {
+      text += `Phone: ${phone}\n`;
+    }
+    if (email) {
+      text += `Email: ${email}\n`;
+    }
+    if (carModel) {
+      text += `Car: ${carModel}\n`;
+    }
+    if (message) {
+      text += `Details: ${message}\n`;
     }
     
-    // Send to first WhatsApp number by default
-    sendToWhatsApp(whatsappNumbers[0]);
+    text += `\nPlease contact me. Thanks!`;
+    
+    // Create WhatsApp URL with shorter message
+    const whatsappUrl = `https://wa.me/+917619360036?text=${encodeURIComponent(text)}`;
+    
+    console.log('WhatsApp URL:', whatsappUrl);
+    console.log('Message to send:', text);
+    
+    // Try alternative WhatsApp URL format
+    const alternativeUrl = `https://api.whatsapp.com/send?phone=+917619360036&text=${encodeURIComponent(text)}`;
+    
+    // Open WhatsApp with fallback
+    try {
+      window.open(whatsappUrl, '_blank');
+    } catch (error) {
+      console.log('Trying alternative URL:', alternativeUrl);
+      window.open(alternativeUrl, '_blank');
+    }
     
     // Clear form after successful submission
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      carModel: '',
-      message: ''
-    });
+    setTimeout(() => {
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        carModel: '',
+        message: ''
+      });
+    }, 1000);
   };
-
-  const locations = [
-    "Bangalore",
-    "KR Puram",
-    "Whitefield",
-    "Mahadevapura",
-    "Bellandur",
-    "CV Raman Nagar",
-    "Marathahalli"
-  ];
 
   const contactInfo = [
     {
@@ -129,7 +121,6 @@ const Contact = () => {
       title: "Business Hours",
       details: [
         "Monday - Sunday: 10:00 AM - 8:00 PM",
-        
       ]
     }
   ];
@@ -147,7 +138,6 @@ const Contact = () => {
           loop
           playsInline
           src="/v44.mp4"
-         
           style={{
             minHeight: '100vh',
             minWidth: '100vw',
@@ -219,6 +209,9 @@ const Contact = () => {
                     Send WhatsApp Message
                   </Button>
                   
+                
+                  
+                  
                   <p className="text-sm text-gray-300 text-center">
                     Click the button to open WhatsApp with your message pre-filled
                   </p>
@@ -241,10 +234,9 @@ const Contact = () => {
                       <p key={idx} className="text-gray-200">
                         {info.isWhatsApp ? (
                           <button
-                            onClick={() => sendToWhatsApp(detail.replace(/\s/g, ''))}
+                            onClick={() => sendToWhatsApp(detail.replace(/\D/g, ''))}
                             className="text-green-400 hover:text-green-300 underline cursor-pointer transition-colors flex items-center gap-2"
                           >
-                            {/* Fix: Import and use the correct WhatsApp icon */}
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="currentColor"
@@ -276,11 +268,6 @@ const Contact = () => {
                   </div>
                 </div>
               ))}
-
-              {/* Map Placeholder
-              <div className="mt-8 rounded-lg overflow-hidden border border-border h-[300px] bg-card flex items-center justify-center">
-                <p className="text-muted-foreground">Google Maps Integration Here</p>
-              </div> */}
             </div>
           </div>
         </div>

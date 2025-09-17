@@ -58,11 +58,11 @@ const Hero = () => {
 Book Your Modification 
           </p>
           <br></br>
-          <Button 
-            className="bg-transparent border border-white text-white hover:bg-white hover:text-black px-8 py-3 text-base font-normal transition-all duration-300 group"
-          ><Link to="/contact">
-            Let's connect</Link>
-            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <Button asChild className="bg-transparent border border-white text-white hover:bg-white hover:text-black px-8 py-3 text-base font-normal transition-all duration-300 group">
+            <Link to="/contact">
+              Let's connect
+              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </Button>
         </div>
       </div>
