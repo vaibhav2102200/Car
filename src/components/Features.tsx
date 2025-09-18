@@ -96,7 +96,8 @@ const Features = () => {
   loop
   muted
   playsInline
-            src="/v.mp4"
+  preload="auto"
+            src="/videos/v.mp4"
             style={{
               minHeight: '300px',
               width: 'auto',

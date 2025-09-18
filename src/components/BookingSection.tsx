@@ -55,7 +55,8 @@ const BookingSection = () => {
             muted
             loop
             playsInline
-            src="/v4.mp4"
+            preload="auto"
+            src="/videos/v4.mp4"
             style={{
               minHeight: '300px',
               width: 'auto',

@@ -7,7 +7,6 @@ import React, { useState, useEffect } from "react";
 const Testimonials = () => {
   const [videoError, setVideoError] = useState(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [videoLoading, setVideoLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   
   // Check if device is mobile
@@ -28,12 +27,19 @@ const Testimonials = () => {
   }, [isMobile]);
   
   const videoSources = isMobile 
-    ? ["/t1.mp4", "/vv3.mp4", "/v3.mp4", "/v1.mp4"] // Mobile-first with t1.mp4
-    : ["/vv3.mp4", "/v3.mp4", "/v1.mp4", "/v.mp4"]; // Desktop sources
+    ? ["/videos/t1.mp4", "/videos/vv3.mp4", "/videos/v3.mp4", "/videos/v1.mp4"] // Mobile-first with t1.mp4
+    : ["/videos/vv3.mp4", "/videos/v3.mp4", "/videos/v1.mp4", "/videos/v.mp4"]; // Desktop sources
+
+  // Preload all videos for better performance
+  const allVideos = [
+    "/videos/v1.mp4", "/videos/h1.mp4", "/videos/v44.mp4", "/videos/c1.mp4",
+    "/videos/t1.mp4", "/videos/vv3.mp4", "/videos/v3.mp4", "/videos/v.mp4",
+    "/videos/v2.mp4", "/videos/v5.mp4", "/videos/v4.mp4"
+  ];
 
   const testimonials = [
     {
-      name: "John D.",
+      name: "Ram P.",
       location: "Bangalore",
       service: "Car Audio System Installation",
       rating: 5,
@@ -79,17 +85,22 @@ const Testimonials = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <Navigation />
+      
+      {/* Hidden video preloader - loads all videos for instant playback */}
+      <div className="hidden">
+        {allVideos.map((videoSrc, index) => (
+          <video
+            key={index}
+            preload="auto"
+            muted
+            src={videoSrc}
+            style={{ display: 'none' }}
+          />
+        ))}
+      </div>
+      
       {/* Video Background */}
       <div className="absolute inset-0 z-0 min-h-screen">
-        {videoLoading && !videoError && (
-          <div className="w-full h-full bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
-            <div className="text-center text-white">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-              <p className="text-lg">Loading video...</p>
-            </div>
-          </div>
-        )}
-        
         {!videoError ? (
           <video
             className="rounded-lg w-[500px] h-[700px] object-cover object-center mx-auto"
@@ -105,15 +116,6 @@ const Testimonials = () => {
               } else {
                 setVideoError(true);
               }
-            }}
-            onLoadStart={() => {
-              setVideoLoading(true);
-            }}
-            onCanPlay={() => {
-              setVideoLoading(false);
-            }}
-            onLoadedData={() => {
-              setVideoLoading(false);
             }}
           />
         ) : (

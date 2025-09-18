@@ -25,11 +25,12 @@ const VideoShowreel = () => {
             <video
               ref={videoRef}
               className="w-full h-full object-cover object-center"
-              src="/v1.mp4"
+              src="/videos/v1.mp4"
               playsInline
               muted
               autoPlay
               loop
+              preload="auto"
               
               style={{
                 minHeight: '400px',

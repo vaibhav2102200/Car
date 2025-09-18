@@ -4,21 +4,31 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Ensure video plays when component mounts
-    if (videoRef.current) {
-      videoRef.current.play().catch(error => {
+    // Ensure videos play when component mounts
+    const playVideos = async () => {
+      try {
+        if (videoRef.current) {
+          await videoRef.current.play();
+        }
+        if (mobileVideoRef.current) {
+          await mobileVideoRef.current.play();
+        }
+      } catch (error) {
         console.log("Video autoplay failed:", error);
-      });
-    }
+      }
+    };
+    
+    playVideos();
   }, []);
   return (
     <section 
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-grays-900"
     >
-      {/* Video Background */}
-      <div className="absolute inset-0">
+      {/* Video Background - Desktop */}
+      <div className="absolute inset-0 hidden md:block">
         <video
           className="w-full h-full object-cover object-center"
           autoPlay
@@ -26,8 +36,8 @@ const Hero = () => {
           loop
           playsInline
           ref={videoRef}
-          src="/v1.mp4"
-         
+          src="/videos/v1.mp4"
+          preload="auto"
           style={{
             minHeight: '100vh',
             minWidth: '100vw',
@@ -36,19 +46,22 @@ const Hero = () => {
           }}
         />
       </div>
+      
+      {/* Video Background - Mobile */}
       <div className="absolute inset-0 flex items-center justify-center md:hidden">
-    <video
-      className="rounded-lg w-[500px] h-[700px] object-cover object-center"
-      autoPlay
-      muted
-      loop
-      playsInline
-      webkit-playsinline="true"
-      preload="metadata"
-      controls={false}
-      src="/h1.mp4"
-    />
-  </div>
+        <video
+          ref={mobileVideoRef}
+          className="rounded-lg w-[500px] h-[700px] object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          webkit-playsinline="true"
+          preload="auto"
+          controls={false}
+          src="/videos/h1.mp4"
+        />
+      </div>
       
      
       {/* Content */}

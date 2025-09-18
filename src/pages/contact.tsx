@@ -182,7 +182,8 @@ const Contact = () => {
           muted
           loop
           playsInline
-          src="/v44.mp4"
+          src="/videos/v44.mp4"
+          preload="auto"
           style={{
             minHeight: '100vh',
             minWidth: '100vw',
@@ -201,9 +202,9 @@ const Contact = () => {
       loop
       playsInline
       webkit-playsinline="true"
-      preload="metadata"
+      preload="auto"
       controls={false}
-      src="/c1.mp4"
+      src="/videos/c1.mp4"
     />
   </div>
       
