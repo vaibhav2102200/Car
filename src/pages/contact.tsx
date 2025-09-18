@@ -419,18 +419,13 @@ const Contact = () => {
                         whileTap={{ scale: 0.95 }}
                         className="mt-4"
                       >
-                        <div className="mt-8 rounded-lg overflow-hidden border border-border h-[300px] bg-card flex items-center justify-center">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.296016161158!2d74.51404677473252!3d15.849695984807155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbf66abf1e3b8f1%3A0xb3b3f8c12b9c63c4!2sAngadi%20Institute%20Of%20Technology%20And%20Management!5e0!3m2!1sen!2sin!4v1694702951896!5m2!1sen!2sin"
-    width="100%"
-    height="100%"
-    style={{ border: 0 }}
-    allowFullScreen
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-  ></iframe>
-                      </div>
-
+                        <button
+                          onClick={() => window.open(info.mapsLink, '_blank')}
+                          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3 px-4 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2"
+                        >
+                          <MapPin className="w-5 h-5" />
+                          <span>Open in Google Maps</span>
+                        </button>
                       </motion.div>
                     )}
                   </div>
