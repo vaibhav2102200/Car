@@ -25,12 +25,11 @@ const VideoShowreel = () => {
             <video
               ref={videoRef}
               className="w-full h-full object-cover object-center"
-              src="/videos/v1.mp4"
-              playsInline
-              webkit-playsinline="true"
               muted
               autoPlay
               loop
+              playsInline
+              webkit-playsinline="true"
               preload="auto"
               controls={false}
               style={{
@@ -38,7 +37,10 @@ const VideoShowreel = () => {
                 width: 'auto',
                 height: 'auto'
               }}
-            />
+            >
+              <source src="/videos/v1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
             <div className="absolute inset-0 bg-black/40" />
             
             {/* Animated Title Overlay */}

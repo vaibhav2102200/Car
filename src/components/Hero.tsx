@@ -2,6 +2,8 @@ import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import VideoDebugger from "./VideoDebugger";
+import VideoTest from "./VideoTest";
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
@@ -11,13 +13,26 @@ const Hero = () => {
     const playVideos = async () => {
       try {
         if (videoRef.current) {
+          // Load the video first
+          videoRef.current.load();
           await videoRef.current.play();
         }
         if (mobileVideoRef.current) {
+          // Load the video first
+          mobileVideoRef.current.load();
           await mobileVideoRef.current.play();
         }
       } catch (error) {
         console.log("Video autoplay failed:", error);
+        // Try to play again after a short delay
+        setTimeout(async () => {
+          try {
+            if (videoRef.current) await videoRef.current.play();
+            if (mobileVideoRef.current) await mobileVideoRef.current.play();
+          } catch (retryError) {
+            console.log("Video retry failed:", retryError);
+          }
+        }, 1000);
       }
     };
     
@@ -31,22 +46,26 @@ const Hero = () => {
       <div className="absolute inset-0 hidden md:block">
         <video
           className="w-full h-full object-cover object-center"
-          autoPlay
           muted
+          autoPlay
           loop
           playsInline
           webkit-playsinline="true"
           ref={videoRef}
-          src="/home.mp4"
           preload="auto"
           controls={false}
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="true"
           style={{
             minHeight: '100vh',
             minWidth: '100vw',
             width: 'auto',
             height: 'auto'
           }}
-        />
+        >
+          <source src="/home.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
       
       {/* Video Background - Mobile */}
@@ -54,17 +73,26 @@ const Hero = () => {
         <video
           ref={mobileVideoRef}
           className="rounded-lg w-[500px] h-[700px] object-cover object-center"
-          autoPlay
           muted
+          autoPlay
           loop
           playsInline
           webkit-playsinline="true"
           preload="auto"
           controls={false}
-          src="/home.mp4"
-        />
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="true"
+        >
+          <source src="/home.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
         
+      {/* Debug Components */}
+      <VideoDebugger videoRef={videoRef} videoSrc="/home.mp4" />
+      <VideoDebugger videoRef={mobileVideoRef} videoSrc="/home.mp4" />
+      <VideoTest />
+
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div className="animate-fade-in">

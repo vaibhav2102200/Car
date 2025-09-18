@@ -177,15 +177,17 @@ const Contact = () => {
       <div className="absolute inset-0 z-0 min-h-screen hidden md:block">
         <video
           className="w-full h-full object-cover object-center"
-          autoPlay
           muted
+          autoPlay
           loop
           playsInline
           webkit-playsinline="true"
           preload="auto"
           controls={false}
-          src="/videos/c2.mp4"
-        />
+        >
+          <source src="/videos/c2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
       
@@ -193,15 +195,17 @@ const Contact = () => {
 <div className="fixed inset-0 z-0 h-screen w-screen overflow-hidden md:hidden">
   <video
     className="absolute top-0 left-0 w-full h-full object-cover"
-    autoPlay
     muted
+    autoPlay
     loop
     playsInline
     webkit-playsinline="true"
     preload="auto"
     controls={false}
-    src="/videos/c1.mp4"
-  />
+  >
+    <source src="/videos/c1.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
   <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 </div>
       
