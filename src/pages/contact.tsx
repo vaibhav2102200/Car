@@ -87,6 +87,48 @@ const Contact = () => {
 
 
 
+  // Function to initiate phone call
+  const makePhoneCall = (phoneNumber: string) => {
+    try {
+      // Clean phone number - remove spaces and ensure proper format
+      const cleanPhoneNumber = phoneNumber.replace(/\s/g, '').replace(/[^\d+]/g, '');
+      
+      // Validate phone number
+      if (!cleanPhoneNumber || cleanPhoneNumber.length < 10) {
+        throw new Error('Invalid phone number format');
+      }
+      
+      // Use tel: protocol to initiate phone call
+      const phoneUrl = `tel:${cleanPhoneNumber}`;
+      
+      // Try to open phone dialer
+      window.location.href = phoneUrl;
+      
+    } catch (error) {
+      console.error('Failed to initiate phone call:', error);
+    }
+  };
+
+  // Function to initiate email
+  const sendEmail = (emailAddress: string) => {
+    try {
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailAddress)) {
+        throw new Error('Invalid email format');
+      }
+      
+      // Use mailto: protocol to open email client
+      const emailUrl = `mailto:${emailAddress}`;
+      
+      // Try to open email client
+      window.location.href = emailUrl;
+      
+    } catch (error) {
+      console.error('Failed to initiate email:', error);
+    }
+  };
+
   // Enhanced WhatsApp sending function with validation and error handling
   const sendToWhatsApp = async (phoneNumber: string, message?: string) => {
     try {
@@ -146,7 +188,8 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+91 7619360036", "+91 7619360037"]
+      details: ["+91 7619360036", "+91 7619360037"],
+      isPhone: true
     },
     {
       icon: MessageCircle,
@@ -160,7 +203,8 @@ const Contact = () => {
       details: [
         "gmscarmodifiers@gmail.com",
         "Monday - Sunday: 10:00 AM - 8:00 PM"
-      ]
+      ],
+      isEmail: true
     },
     {
       icon: MapPin,
@@ -183,7 +227,7 @@ const Contact = () => {
           playsInline
           webkit-playsinline="true"
           preload="auto"
-          src="/videos/c2.mp4"
+          src="/videos/c2_converted.mp4"
         />
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
@@ -198,7 +242,7 @@ const Contact = () => {
     playsInline
     webkit-playsinline="true"
     preload="auto"
-    src="/videos/c1.mp4"
+    src="/videos/c1_converted.mp4"
   />
   <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 </div>
@@ -209,28 +253,38 @@ const Contact = () => {
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center mb-16"
           >
             <div className="relative">
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
+                initial={{ scale: 0, rotate: -10 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
                 className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/50 rounded-full px-4 py-2 mb-6"
               >
                 <Sparkles className="w-4 h-4 text-green-400" />
                 <span className="text-green-400 text-sm font-medium">Ready to Transform Your Ride?</span>
               </motion.div>
               
-              <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-tight text-white">
-                Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">Connect</span>
-              </h1>
+              <motion.h1 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+                className="text-4xl md:text-7xl font-bold mb-6 leading-tight text-white"
+              >
+                Let's <motion.span 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400"
+                >Connect</motion.span>
+              </motion.h1>
               
               <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
                 className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto"
               >
                 Get in touch with us for premium car modification services in Bangalore and surrounding areas.
@@ -240,14 +294,47 @@ const Contact = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
+                transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
                 className="flex items-center justify-center gap-4 text-green-400"
               >
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <motion.div 
+                  className="flex items-center gap-2"
+                  animate={{ 
+                    y: [0, -5, 0],
+                    transition: { 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }
+                  }}
+                >
+                  <motion.div 
+                    className="w-3 h-3 bg-green-400 rounded-full"
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      opacity: [0.7, 1, 0.7]
+                    }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                  ></motion.div>
                   <span className="text-sm font-medium">We're online and ready to help</span>
-                </div>
-                <Heart className="w-4 h-4 text-red-400 animate-pulse" />
+                </motion.div>
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 5, -5, 0]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                >
+                  <Heart className="w-4 h-4 text-red-400" />
+                </motion.div>
               </motion.div>
             </div>
           </motion.div>
@@ -305,8 +392,17 @@ const Contact = () => {
 
             <div className="space-y-6">
               <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4, duration: 0.8, ease: "easeOut" }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }}
+                whileTap={{ 
+                  scale: 0.98,
+                  transition: { duration: 0.1, ease: "easeOut" }
+                }}
                 className="relative"
               >
                 <Button 
@@ -359,10 +455,20 @@ const Contact = () => {
               {contactInfo.map((info, index) => (
                 <motion.div 
                   key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.6 + index * 0.2, duration: 0.6 }}
-                  whileHover={{ scale: 1.02 }}
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    delay: 1.6 + index * 0.2, 
+                    duration: 0.8, 
+                    ease: "easeOut",
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    y: -5,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
                   className={`bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-gray-600/50 hover:border-green-500/50 transition-all duration-300 ${info.mapsLink ? 'md:col-span-3' : ''}`}
                 >
                   <div className="flex items-center gap-3 mb-3">
@@ -378,14 +484,32 @@ const Contact = () => {
                     {info.details.map((detail, idx) => (
                       <motion.div
                         key={idx}
-                        whileHover={{ x: 5 }}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ 
+                          delay: 2.0 + index * 0.2 + idx * 0.1, 
+                          duration: 0.6, 
+                          ease: "easeOut" 
+                        }}
+                        whileHover={{ 
+                          x: 5,
+                          transition: { duration: 0.2, ease: "easeOut" }
+                        }}
                         className="transition-all duration-200"
                       >
                         {info.isWhatsApp ? (
-                          <button
+                          <motion.button
                             onClick={() => sendToWhatsApp(detail)}
                             className="text-green-400 hover:text-green-300 flex items-center gap-3 p-3 rounded-lg hover:bg-green-500/10 transition-all duration-200 w-full text-left group"
                             disabled={whatsappStatus === 'sending'}
+                            whileHover={{ 
+                              scale: 1.02,
+                              transition: { duration: 0.2, ease: "easeOut" }
+                            }}
+                            whileTap={{ 
+                              scale: 0.98,
+                              transition: { duration: 0.1, ease: "easeOut" }
+                            }}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -399,7 +523,41 @@ const Contact = () => {
                             {whatsappStatus === 'sending' && (
                               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-400 ml-auto"></div>
                             )}
-                          </button>
+                          </motion.button>
+                        ) : info.isPhone ? (
+                          <motion.button
+                            onClick={() => makePhoneCall(detail)}
+                            className="text-blue-400 hover:text-blue-300 flex items-center gap-3 p-3 rounded-lg hover:bg-blue-500/10 transition-all duration-200 w-full text-left group"
+                            whileHover={{ 
+                              scale: 1.02,
+                              transition: { duration: 0.2, ease: "easeOut" }
+                            }}
+                            whileTap={{ 
+                              scale: 0.98,
+                              transition: { duration: 0.1, ease: "easeOut" }
+                            }}
+                          >
+                            <Phone className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
+                            <span className="font-medium">{detail}</span>
+                            
+                          </motion.button>
+                        ) : info.isEmail && detail.includes('@') ? (
+                          <motion.button
+                            onClick={() => sendEmail(detail)}
+                            className="text-purple-400 hover:text-purple-300 flex items-center gap-3 p-3 rounded-lg hover:bg-purple-500/10 transition-all duration-200 w-full text-left group"
+                            whileHover={{ 
+                              scale: 1.02,
+                              transition: { duration: 0.2, ease: "easeOut" }
+                            }}
+                            whileTap={{ 
+                              scale: 0.98,
+                              transition: { duration: 0.1, ease: "easeOut" }
+                            }}
+                          >
+                            <Mail className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
+                            <span className="font-medium">{detail}</span>
+                           
+                          </motion.button>
                         ) : (
                           <div className="text-gray-300 p-2 rounded-lg bg-gray-800/30">
                             {detail}
@@ -410,8 +568,22 @@ const Contact = () => {
                     
                     {info.mapsLink && (
                       <motion.div 
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ 
+                          delay: 2.4 + index * 0.2, 
+                          duration: 0.6, 
+                          ease: "easeOut" 
+                        }}
+                        whileHover={{ 
+                          scale: 1.05,
+                          y: -2,
+                          transition: { duration: 0.3, ease: "easeOut" }
+                        }}
+                        whileTap={{ 
+                          scale: 0.95,
+                          transition: { duration: 0.1, ease: "easeOut" }
+                        }}
                         className="mt-4"
                       >
                         <button

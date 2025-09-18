@@ -27,7 +27,7 @@ const About = () => {
             playsInline
             webkit-playsinline="true"
             preload="auto"
-            src="/About.mp4"
+            src="/About_converted.mp4"
           />
         </div>
         
@@ -163,51 +163,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Location Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-heading font-bold mb-4">Visit Our Workshop</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Located in the heart of Bangalore, our state-of-the-art workshop is equipped with the latest tools and technology to bring your car modification dreams to life.
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-card rounded-lg p-8 border border-border"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Address</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  434, Old Madras Rd, Corporation Colony,<br />
-                  Bangalore Corporation Industrial Estate,<br />
-                  Dooravani Nagar, Bengaluru,<br />
-                  Karnataka 560016
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
-                <div className="space-y-2 text-muted-foreground">
-                  <p><strong>Phone:</strong> +91 7619360036</p>
-                  <p><strong>Phone:</strong> +91 7619360037</p>
-                  <p><strong>Email:</strong> gmscarmodifiers@gmail.com</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+     
 
       <Footer />
     </div>

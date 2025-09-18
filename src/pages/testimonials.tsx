@@ -86,7 +86,7 @@ const Testimonials = () => {
           playsInline
           webkit-playsinline="true"
           preload="auto"
-          src="/videos/td.mp4"
+          src="/videos/td_converted.mp4"
         />
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
@@ -101,7 +101,7 @@ const Testimonials = () => {
     playsInline
     webkit-playsinline="true"
     preload="auto"
-    src="/videos/t1.mp4"
+    src="/videos/t1_converted.mp4"
   />
   <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 </div>

@@ -57,7 +57,7 @@ const BookingSection = () => {
             playsInline
             webkit-playsinline="true"
             preload="auto"
-            src="/videos/v4.mp4"
+            src="/videos/v4_converted.mp4"
           />
         </div>
       </div>

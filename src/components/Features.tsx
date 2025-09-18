@@ -99,14 +99,14 @@ const Features = () => {
             webkit-playsinline="true"
             preload="auto"
             controls={false}
+            src="/videos/v_converted.mp4" 
             style={{
               minHeight: '300px',
               width: 'auto',
               height: 'auto'
             }}
           >
-            <source src="/videos/v.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
+
           </video>
 
         </div>

@@ -132,7 +132,7 @@ const Services = () => {
       playsInline
       webkit-playsinline="true"
       preload="auto"
-      src="/videos/v3.mp4"
+      src="/videos/v3_converted.mp4"
     />
   </div>
 
@@ -146,7 +146,7 @@ const Services = () => {
       playsInline
       webkit-playsinline="true"
       preload="auto"
-      src="/videos/v5.mp4"
+      src="/videos/v5_converted.mp4"
     />
   </div>
 

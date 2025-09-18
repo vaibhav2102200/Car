@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import VideoDebugger from "./VideoDebugger";
+
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
@@ -52,7 +52,7 @@ const Hero = () => {
           webkit-playsinline="true"
           ref={videoRef}
           preload="auto"
-          src="/home.mp4"
+          src="/home_converted.mp4"
         />
       </div>
       
@@ -67,14 +67,11 @@ const Hero = () => {
           playsInline
           webkit-playsinline="true"
           preload="auto"
-          src="/home.mp4"
+          src="/home_converted.mp4"
         />
       </div>
         
-      {/* Debug Components */}
-      <VideoDebugger videoRef={videoRef} videoSrc="/home.mp4" />
-      <VideoDebugger videoRef={mobileVideoRef} videoSrc="/home.mp4" />
-
+      
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div className="animate-fade-in">
