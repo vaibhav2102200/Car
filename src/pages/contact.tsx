@@ -183,7 +183,6 @@ const Contact = () => {
           loop
           playsInline
           src="/v44.mp4"
-         
           style={{
             minHeight: '100vh',
             minWidth: '100vw',
