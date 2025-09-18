@@ -25,17 +25,7 @@ const Testimonials = () => {
     
     return () => window.removeEventListener('resize', checkMobile);
   }, [isMobile]);
-  
-  const videoSources = isMobile 
-    ? ["/videos/t1.mp4", "/videos/vv3.mp4", "/videos/v3.mp4", "/videos/v1.mp4"] // Mobile-first with t1.mp4
-    : ["/videos/vv3.mp4", "/videos/v3.mp4", "/videos/v1.mp4", "/videos/v.mp4"]; // Desktop sources
 
-  // Preload all videos for better performance
-  const allVideos = [
-    "/videos/v1.mp4", "/videos/h1.mp4", "/videos/v44.mp4", "/videos/c1.mp4",
-    "/videos/t1.mp4", "/videos/vv3.mp4", "/videos/v3.mp4", "/videos/v.mp4",
-    "/videos/v2.mp4", "/videos/v5.mp4", "/videos/v4.mp4"
-  ];
 
   const testimonials = [
     {
@@ -86,49 +76,36 @@ const Testimonials = () => {
     <div className="min-h-screen bg-background relative">
       <Navigation />
       
-      {/* Hidden video preloader - loads all videos for instant playback */}
-      <div className="hidden">
-        {allVideos.map((videoSrc, index) => (
-          <video
-            key={index}
-            preload="auto"
-            muted
-            src={videoSrc}
-            style={{ display: 'none' }}
-          />
-        ))}
-      </div>
-      
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0 min-h-screen">
-        {!videoError ? (
-          <video
-            className="rounded-lg w-[500px] h-[700px] object-cover object-center mx-auto"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            src={videoSources[currentVideoIndex]}
-            onError={(e) => {
-              if (currentVideoIndex < videoSources.length - 1) {
-                setCurrentVideoIndex(currentVideoIndex + 1);
-              } else {
-                setVideoError(true);
-              }
-            }}
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
-            <div className="text-center text-white">
-              <p className="text-lg mb-2">Video unavailable</p>
-              <p className="text-sm text-gray-400">Background video could not be loaded</p>
-            </div>
-          </div>
-        )}
-        {/* Dark overlay for better text readability */}
+      {/* Video Background - Desktop */}
+      <div className="absolute inset-0 z-0 min-h-screen hidden md:block">
+        <video
+          className="w-full h-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          src="/videos/td.mp4"
+        />
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
+      
+    {/* Video Background - Mobile */}
+<div className="fixed inset-0 z-0 h-screen w-screen overflow-hidden md:hidden">
+  <video
+    className="absolute top-0 left-0 w-full h-full object-cover"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    controls={false}
+    src="/videos/t1.mp4"
+  />
+  <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+</div>
+
+
       
       <main className="pt-20 px-4 relative z-10">
         <div className="max-w-7xl mx-auto">

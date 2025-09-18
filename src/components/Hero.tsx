@@ -36,7 +36,7 @@ const Hero = () => {
           loop
           playsInline
           ref={videoRef}
-          src="/videos/v1.mp4"
+          src="/home.mp4"
           preload="auto"
           style={{
             minHeight: '100vh',
@@ -59,11 +59,10 @@ const Hero = () => {
           webkit-playsinline="true"
           preload="auto"
           controls={false}
-          src="/videos/h1.mp4"
+          src="/home.mp4"
         />
       </div>
-      
-     
+        
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div className="animate-fade-in">

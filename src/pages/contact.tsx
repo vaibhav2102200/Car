@@ -174,39 +174,33 @@ const Contact = () => {
     <div className="min-h-screen bg-background relative">
       <Navigation />
       
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 min-h-screen hidden md:block">
         <video
           className="w-full h-full object-cover object-center"
           autoPlay
           muted
           loop
           playsInline
-          src="/videos/v44.mp4"
           preload="auto"
-          style={{
-            minHeight: '100vh',
-            minWidth: '100vw',
-            width: 'auto',
-            height: 'auto'
-          }}
+          src="/videos/c2.mp4"
         />
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-80"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
-      <div className="absolute inset-0 flex items-center justify-center md:hidden">
-    <video
-      className="rounded-lg w-[500px] h-[700px] object-cover object-center"
-      autoPlay
-      muted
-      loop
-      playsInline
-      webkit-playsinline="true"
-      preload="auto"
-      controls={false}
-      src="/videos/c1.mp4"
-    />
-  </div>
+      
+    {/* Video Background - Mobile */}
+<div className="fixed inset-0 z-0 h-screen w-screen overflow-hidden md:hidden">
+  <video
+    className="absolute top-0 left-0 w-full h-full object-cover"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    controls={false}
+    src="/videos/c1.mp4"
+  />
+  <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+</div>
       
       <main className="pt-20 px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
