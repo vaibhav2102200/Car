@@ -25,7 +25,9 @@ const About = () => {
             muted
             loop
             playsInline
+            webkit-playsinline="true"
             preload="auto"
+            controls={false}
             src="/About.mp4"  
           />
         </div>

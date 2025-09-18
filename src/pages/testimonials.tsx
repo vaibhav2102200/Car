@@ -84,7 +84,9 @@ const Testimonials = () => {
           muted
           loop
           playsInline
+          webkit-playsinline="true"
           preload="auto"
+          controls={false}
           src="/videos/td.mp4"
         />
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -98,6 +100,7 @@ const Testimonials = () => {
     muted
     loop
     playsInline
+    webkit-playsinline="true"
     preload="auto"
     controls={false}
     src="/videos/t1.mp4"

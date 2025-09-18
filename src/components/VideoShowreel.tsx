@@ -27,11 +27,12 @@ const VideoShowreel = () => {
               className="w-full h-full object-cover object-center"
               src="/videos/v1.mp4"
               playsInline
+              webkit-playsinline="true"
               muted
               autoPlay
               loop
               preload="auto"
-              
+              controls={false}
               style={{
                 minHeight: '400px',
                 width: 'auto',

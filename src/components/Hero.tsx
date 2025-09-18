@@ -35,9 +35,11 @@ const Hero = () => {
           muted
           loop
           playsInline
+          webkit-playsinline="true"
           ref={videoRef}
           src="/home.mp4"
           preload="auto"
+          controls={false}
           style={{
             minHeight: '100vh',
             minWidth: '100vw',

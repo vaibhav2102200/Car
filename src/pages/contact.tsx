@@ -181,7 +181,9 @@ const Contact = () => {
           muted
           loop
           playsInline
+          webkit-playsinline="true"
           preload="auto"
+          controls={false}
           src="/videos/c2.mp4"
         />
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -195,6 +197,7 @@ const Contact = () => {
     muted
     loop
     playsInline
+    webkit-playsinline="true"
     preload="auto"
     controls={false}
     src="/videos/c1.mp4"
