@@ -51,22 +51,14 @@ const BookingSection = () => {
         <div className="relative group rounded-2xl overflow-hidden border border-border transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,0,0,0.6)] hover:border-red-500">
            <video
             className="w-full h-[300px] md:h-[400px] object-cover object-center"
-            muted
             autoPlay
             loop
+            muted
             playsInline
             webkit-playsinline="true"
             preload="auto"
-            controls={false}
-            style={{
-              minHeight: '300px',
-              width: 'auto',
-              height: 'auto'
-            }}
-          >
-            <source src="/videos/v4.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+            src="/videos/v4.mp4"
+          />
         </div>
       </div>
     </section>

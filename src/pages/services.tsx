@@ -126,34 +126,28 @@ const Services = () => {
   <div className="absolute inset-0 flex items-center justify-center hidden md:flex">
     <video
       className="rounded-lg w-full h-full object-cover object-center"
-      muted
       autoPlay
       loop
+      muted
       playsInline
       webkit-playsinline="true"
       preload="auto"
-      controls={false}
-    >
-      <source src="/videos/v3.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+      src="/videos/v3.mp4"
+    />
   </div>
 
   {/* Background video for mobile */}
   <div className="absolute inset-0 flex items-center justify-center md:hidden">
     <video
       className="rounded-lg w-[500px] h-[700px] object-cover object-center"
-      muted
       autoPlay
       loop
+      muted
       playsInline
       webkit-playsinline="true"
       preload="auto"
-      controls={false}
-    >
-      <source src="/videos/v5.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+      src="/videos/v5.mp4"
+    />
   </div>
 
   {/* Overlay */}

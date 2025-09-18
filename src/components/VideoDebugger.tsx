@@ -10,49 +10,28 @@ const VideoDebugger = ({ videoRef, videoSrc }: VideoDebuggerProps) => {
     const video = videoRef.current;
     if (!video) return;
 
-    const logVideoInfo = () => {
-      console.log('=== VIDEO DEBUG INFO ===');
-      console.log('Video src:', videoSrc);
-      console.log('Video readyState:', video.readyState);
-      console.log('Video networkState:', video.networkState);
-      console.log('Video paused:', video.paused);
-      console.log('Video muted:', video.muted);
-      console.log('Video autoplay:', video.autoplay);
-      console.log('Video playsInline:', video.playsInline);
-      console.log('Video webkit-playsinline:', video.getAttribute('webkit-playsinline'));
-      console.log('User Agent:', navigator.userAgent);
-      console.log('Is iOS:', /iPad|iPhone|iPod/.test(navigator.userAgent));
-      console.log('========================');
-    };
-
     const handleLoadStart = () => {
-      console.log('Video load started');
-      logVideoInfo();
+      // Video load started
     };
 
     const handleLoadedData = () => {
-      console.log('Video data loaded');
-      logVideoInfo();
+      // Video data loaded
     };
 
     const handleCanPlay = () => {
-      console.log('Video can play');
-      logVideoInfo();
+      // Video can play
     };
 
     const handlePlay = () => {
-      console.log('Video started playing');
-      logVideoInfo();
+      // Video started playing
     };
 
     const handlePause = () => {
-      console.log('Video paused');
-      logVideoInfo();
+      // Video paused
     };
 
     const handleError = (e: Event) => {
-      console.error('Video error:', e);
-      logVideoInfo();
+      // Video error occurred
     };
 
     // Add event listeners
@@ -62,9 +41,6 @@ const VideoDebugger = ({ videoRef, videoSrc }: VideoDebuggerProps) => {
     video.addEventListener('play', handlePlay);
     video.addEventListener('pause', handlePause);
     video.addEventListener('error', handleError);
-
-    // Initial log
-    logVideoInfo();
 
     // Cleanup
     return () => {
